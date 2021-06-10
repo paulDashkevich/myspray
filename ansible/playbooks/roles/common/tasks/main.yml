@@ -1,0 +1,99 @@
+---
+- name: Upgrade all packages
+  yum:
+        name: '*'
+        state: latest
+
+- name: Remove postfix package
+  yum:
+        name: postfix
+        state: absent
+
+- name: Install common pkgs
+  yum:
+    name:
+      - epel-release
+      - zip
+      - unzip
+      - bzip2
+      - gzip
+      - wget
+      - libselinux-python
+      - policycoreutils-python
+      - git
+      - curl
+      - mc
+      - vim
+    state: present
+
+- name: Change the hostname to our standard
+  hostname:
+      name: "{{ inventory_hostname }}"
+  when:
+      ansible_fqdn != ansible_host
+
+- name: Build hosts file
+  blockinfile:
+      dest: /etc/cloud/templates/hosts.redhat.tmpl
+      content: "{{ lookup('template', 'templates_etc_hosts.j2') }}"
+      state: present
+
+- name: switch off swap
+  shell: "swapoff -a"
+  when:
+       - inventory_hostname != "nginx"
+       - inventory_hostname != "nfserver"
+
+- name: Remove swap fstab
+  lineinfile:
+      dest: /etc/fstab
+      regexp: '(?i)^([^#][\S]+\s+(none|swap)\s+swap.*)'
+      line: '# \1'
+      backrefs: yes
+      state: present
+  when:
+       - inventory_hostname != "nfserver"
+
+- name: Set authorized key took from file
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', 'id_rsa.pub') }}"
+
+- name: Copy the private_key
+  copy:
+    become_user: root
+    mode: 600
+    src: files/id_rsa
+    dest: /root/.ssh/id_rsa
+
+- name: Install python-pip
+  yum:
+     name:
+       - python-pip
+       - python-setuptools
+       - python-devel
+       - python3
+       - "@development-tools"
+
+- name: Upgrade pip
+  pip:
+    name: pip
+    executable: pip3
+    state: latest
+
+- name: upd pip
+  command: python3 -m pip install --upgrade pip
+
+- name: Create Kubernetes deploy directory
+  file:
+    path: "$HOME/deploy"
+    state: directory
+
+- name: Copy deploy files
+  template:
+    src: "{{ item }}"
+    dest: "$HOME/deploy/{{ item | basename | regex_replace('\\.j2','') }}"
+  with_fileglob:
+    - ../files/n2/*.j2
+  when: inventory_hostname == "master"

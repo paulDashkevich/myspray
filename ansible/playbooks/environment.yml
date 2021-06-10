@@ -1,0 +1,7 @@
+- name: time sync for all hosts
+  hosts: all
+  become: true
+  roles:
+    - role: ntp
+    - role: common
+    - role: dis_ipv6

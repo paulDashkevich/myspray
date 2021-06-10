@@ -1,0 +1,7 @@
+ah_dc            = "ams1"
+ah_token         = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJpc3MiOiJOb3BlIiwiaWF0IjoxNjIwOTgxODIwLCJqdGkiOiI4MmQ1ODM4MC1lNzY4LTQ2MjQtYjljNC1mNWNmMTMwNjUzMGIiLCJ1c2VyIjp7ImlkIjoiNWI5MjkwZDQtZDU1MC00OTI5LThkYmItOThjZDhiMjBlYWUxIiwiYWNjb3VudF9pZCI6IjA0ODNjZjI4LWUxMDYtNGY5NS05ZGJmLWZlYzYxZjJiNTQ3YSIsImVtYWlsIjoiZ2l0YXJpc3RAbWFpbC5ydSJ9fQ.g-_J3y7bjs_4vzpVtzlrhRynBF-q7CqLcm9yQjwWqm1H6Y2a3cH2cg-Nvhhv-PeFixisKOtSJnwn7iisI7ZxEc--y0GFh8d30oXB8FymtVcX09jlL96wkvAY19gG0t3FAy8i4pS7ajkwQvCWmlPJT0TQyKwZ3a7TRFy0ZLN0GD-lxDl0zl8t7NTrfWad7vzWoGDNFWil3RCYq7O70QCSDzWIcFXS-8kdsWm_ts7yuuPdsWEh_x2ZhXbwn8EiXYfm4BrG20fW4tn1PeZViT7I-2yvislz0QKNY8LoJsrHyEheDylBfao2hDkV556WLj9gz6KHLXGvYIzE_8BzeRnsXCoRvX5uLP5HLFU3XQ0kkUWBLF4NoEH2ZT3eYc_8V3SVxoSs9Rtz3LCsB8iPxAL1O7OKT6q0cB27uwP5qj09eVT6nFBuMBm9WMjtPMAaqgAVnybwvcPGVNrfLq7oV21jwZ3dw5kwAItGPb-f2QP3WgqaOibmzgAhWTXb3GWoryLtxqtspzwiPz8DqxhfQI8n4AyPMf_HYEt_pi5iPzTkhpolaxFHv8h1yVquH-mhbcienI_5YuJu1FdWAAqSCAok0vhT9ooWP1nk3YegIFLtsgB2dERnlJFr8uxD4VatrYQcJ3GYPK1x0oRhv64Fc3Z0KvGbmpodjToc7Ur5Zy68pv4"
+ah_machine_type  = "start-l"
+ah_image_type    = "centos-7-x64"
+ah_hdd           = "ssd2-ams1"
+ah_fp            = "f2:64:47:ba:f4:26:5d:a8:da:75:be:b3:34:e8:bf:4a"
+private_key_path = "/root/.ssh/id_rsa.pub"
