@@ -22,15 +22,3 @@ resource "ah_private_network_connection" "lan1" {
   ah_cloud_server.k8s
   ]
 }
-
-resource "ah_volume" "harddrive" {
-    name        = "hdd"
-    product     = var.ah_hdd
-    file_system = "ext4"
-    size        = "5"
-}
-
-resource "ah_volume_attachment" "add-hdd" {
-  cloud_server_id = ah_cloud_server.k8s[0].id
-  volume_id       = ah_volume.harddrive.id
-}
