@@ -18,3 +18,12 @@
 declare -a IPS=(10.1.0.11 10.1.0.12 10.1.0.13)
 CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
 ```
+  8. Редактируем настройки разврётывания на необходимые в каталоге inventory/mycluster/group_vars/all или inventory/mycluster/group_vars/k8s_cluster.
+  9. Нужно установить chmod 600 на ключи для приватной сети:
+```
+chmod 600 /root/.ssh/id_rsa
+```
+  10. Запускаем проигрывание плэйбука на развёртку кластера:
+```
+ansible-playbook -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml
+```
